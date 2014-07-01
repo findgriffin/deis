@@ -629,8 +629,8 @@ class DeisClient(object):
             username = raw_input('username: ')
         password = args.get('--password')
         if not password:
-            password = getpass('password: ')
-            confirm = getpass('password (confirm): ')
+            password = getpass('password: ', sys.stdin)
+            confirm = getpass('password (confirm): ', sys.stdin)
             if password != confirm:
                 print('Password mismatch, aborting registration.')
                 sys.exit(1)
@@ -678,7 +678,7 @@ class DeisClient(object):
                 self._settings.save()
                 print('Account cancelled')
             else:
-                print('Accont not changed')
+                print('Account not changed')
 
     def auth_login(self, args):
         """
