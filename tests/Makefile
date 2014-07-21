@@ -1,10 +1,11 @@
 test:
 	GOPATH=$(CURDIR)/_vendor:$(GOPATH) \
-	go test -tags integration -timeout 30m -v ./...
+	go test -tags integration -v -run TestGlobal
+	go test -tags integration -v -run TestApps
 
 test-smoke:
 	GOPATH=$(CURDIR)/_vendor:$(GOPATH) \
-	go test -tags integration -timeout 10m -short -v ./...
+	go test -tags integration -short -v -run TestSmoke
 
 nuke_from_orbit:
 	-docker kill `docker ps -q`
